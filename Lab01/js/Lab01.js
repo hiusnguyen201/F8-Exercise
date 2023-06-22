@@ -38,16 +38,16 @@ console.log(S);
     Tìm số lớn nhất trong 3 số và hiển thị kết quả  
 */
 
-var num1 = 5, num2 = 3, num3 = 6;
-var max = num1;
+var a = 5, b = 7, c = 6;
+var max = a;
 
-if(num2 >= max)
+if(b >= max)
 {
-    max = num2;
+    max = b;
 }
-else if(num3 >= max)
+else if(c >= max)
 {
-    max = num3;
+    max = c;
 }
 
 console.log(max);
@@ -63,19 +63,11 @@ console.log(max);
     Kiểm tra 2 số cùng dấu hay không và hiển thị kết quả ra màn hình
 */
 
-var num4 = -4, num5 = 4;
-var isPositive;
+var a = 4, b = 4;
 
-if((num4 >= 0 && num5 >= 0) || (num4 < 0 && num5 < 0))
-{
-    isPositive = true;
-}
-else
-{
-    isPositive = false;
-}
+var isSame = ((a >= 0 && b >= 0) || (a < 0 && b < 0))? true: false;
 
-console.log(isPositive);
+console.log(isSame);
 
 /*
     # Bài 5: Sắp xếp 3 số
@@ -88,7 +80,7 @@ console.log(isPositive);
     Thực hiện đổi chỗ 3 số a, b, c sao cho 3 số có thứ tự tăng dần
 */
 
-var a = 7, b = 8, c = 6;
+var a = 4, b = 6, c = 4;
 
 if(b > a && b > c)
 {
