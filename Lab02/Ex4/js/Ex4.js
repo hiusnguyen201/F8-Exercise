@@ -27,4 +27,3 @@ else
     console.log(`${n} khong phai la so nguyen to`);
 }
 
-console.log(4 % 3);
