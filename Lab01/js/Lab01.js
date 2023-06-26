@@ -63,9 +63,21 @@ console.log(max);
     Kiểm tra 2 số cùng dấu hay không và hiển thị kết quả ra màn hình
 */
 
-var a = 4, b = 4;
+var a = 4, b = 2;
 
-var isSame = ((a >= 0 && b >= 0) || (a < 0 && b < 0))? true: false;
+if(a * b > 0)
+{
+    isSame = true;
+}
+else if (a == 0 || b == 0)
+{
+    console.log("Ko sanh duoc new a hoac b bang 0");
+}
+else
+{
+    isSame = false;
+}
+
 
 console.log(isSame);
 
@@ -80,26 +92,24 @@ console.log(isSame);
     Thực hiện đổi chỗ 3 số a, b, c sao cho 3 số có thứ tự tăng dần
 */
 
-var a = 4, b = 6, c = 4;
+var a = 7, b = 4, c = 5;
 
-if(b > a && b > c)
-{
-    b = a + b;
-    a = b - a;
-    b = b - a;
+if(a >= b && a >= c)
+{   
+    a = a + c;
+    c = a - c;
+    a = a - c;
 }
-else if(c > a && c > b)
+else if(b >= a && b >= c)
 {
-    c = a + c;
-    a = c - a;
-    c = c - a;
+    b = b + c;
+    c = b - c;
+    b = b - c;
 }
-
-if(c > b)
+if(a >= b)
 {
-    c = b + c;
-    b = c - b;
-    c = c - b;
+    a = a + b;
+    b = a - b;
+    a = a - b;
 }
-
 console.log(a, b, c);
