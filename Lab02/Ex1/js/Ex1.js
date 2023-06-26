@@ -23,12 +23,12 @@ if(km >= 0)
     else if(km > 1 && km <= 5)
     {
         price = 13500;
-        total = km * price;
+        total = 15000 + (km - 1) * price;
     }
     else
     {
         price = 11000;
-        total = (5 * 13500) + ((km - 5)  * price);
+        total = 15000 + (5 * 13500) + ((km - 5) * price);
         if(km > 120)
         {
             discount = 10;
