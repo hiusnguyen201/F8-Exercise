@@ -2,9 +2,16 @@
 
 var n = 10, total = 1;
 
-for(var i = 1; i <= n; i++)
+if(Number.isInteger(n))
 {
-    total *= i;
+    for(var i = 1; i <= n; i++)
+    {
+        total *= i;
+    }
+    console.log(total);
+}
+else
+{
+    console.log('n ko phai la so nguyen');
 }
 
-console.log(total);
