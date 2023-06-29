@@ -71,13 +71,12 @@ if(a * b > 0)
 }
 else if (a == 0 || b == 0)
 {
-    console.log("Ko sanh duoc new a hoac b bang 0");
+    console.log("Ko sanh duoc neu a hoac b bang 0");
 }
 else
 {
     isSame = false;
 }
-
 
 console.log(isSame);
 

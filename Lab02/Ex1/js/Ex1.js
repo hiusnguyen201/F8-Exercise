@@ -13,7 +13,7 @@
 
 var km = 150, price, discount, total;
 
-if(km >= 0)
+if(km > 0)
 {
     if(km <= 1)
     {
@@ -28,11 +28,11 @@ if(km >= 0)
     else
     {
         price = 11000;
-        total = 15000 + (5 * 13500) + ((km - 5) * price);
+        total = 15000 + (4 * 13500) + ((km - 5) * price);
         if(km > 120)
         {
             discount = 10;
-            total = total - total * (10 / 100);
+            total = total - total * (discount / 100);
         }
     }
 

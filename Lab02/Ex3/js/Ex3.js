@@ -4,11 +4,18 @@ var n = 10, total = 1;
 
 if(Number.isInteger(n))
 {
-    for(var i = 1; i <= n; i++)
+    if(n >= 0)
     {
-        total *= i;
+        for(var i = 1; i <= n; i++)
+        {
+            total *= i;
+        }
+        console.log(total);
     }
-    console.log(total);
+    else
+    {
+        console.log('Khong hop le');
+    }
 }
 else
 {

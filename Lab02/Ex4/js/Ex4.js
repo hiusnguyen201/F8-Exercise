@@ -2,23 +2,27 @@
 
 var n = 13, result = true;
 
-if (n == 1)
+if (n === 1)
 {
     result = false;
 }
 else
 {
-    for(var i = 2; i < n/2; i++) // Có thể lặp đến < n -> nhiều vòng lặp hơn
+    if(n <= 0)
     {
-        if(n % i == 0)
+        result = false;
+        for(var i = 2; i < n/2; i++) // Có thể lặp đến < n -> nhiều vòng lặp hơn
         {
-            result = false;
-            break;
+            if(n % i === 0)
+            {
+                result = false;
+                break;
+            }
         }
     }
 }
 
-if(result == true)
+if(result === true)
 {
     console.log(`${n} la so nguyen to`);
 }
