@@ -1,3 +1,56 @@
+/**
+    Bài test 22: tạo hàm sum: Tạo hàm sum có 2 tham số a và b. Hàm trả ra tổng của a và b.
+    sum(2, 3) // output: 5
+    sum(5, 5) // output: 10
+*/
+
+function sum (a, b){
+    return a + b
+}
+
+console.log(sum(2, 3));
+
+/*
+    Bài test 23: Tính tổng các số nguyên tố từ 1 đến n
+
+    Tạo hàm sumPrime có 1 tham số n. Hàm trả ra tổng các số nguyên tố từ 1 đến n.
+
+    Số nguyên tố là số chỉ chia hết cho 1 và chính nó.
+
+    sumPrime(5) // output: 10;
+    sumPrime(10) // output: 17;
+*/
+
+function sumPrime(n) {
+    var total = 0;
+    for(var i = 1; i <= n; i++) {
+        var count = 0;
+        for(var j = 2; j < i - 1; j++) {
+            if(i % j === 0)
+            {
+                count++;
+                break;
+            }
+        }
+        
+        if(count === 0 && i !== 1)
+        {
+            total += i;
+        }
+    }
+    return total;
+}
+
+var n = 10;
+if(Number.isInteger(n) && n > 0)
+{
+    console.log(`Tổng các số nguyên tố: ` + sumPrime(n));
+}
+else
+{
+    console.log('Ko hợp lệ');
+}
+
 /*
     # Bài 1: Tìm số chẵn lẻ
     Cho 1 số nguyên bất kỳ, hiển thị danh sách các số chẵn và số lẻ
