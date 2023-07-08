@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .red-text {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <p id="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum quae optio, unde aperiam labore delectus eum quasi perferendis accusantium consectetur.</p>
+
+  <script>
+    function changeTextColor(text) {
+      var words = text.split(' ');
+      var i = 0;
+
+      setInterval(function() {
+        var preIndex = i;
+        i = (i + 1) % words.length;
+
+        if (preIndex !== i) {
+          words[preIndex] = words[preIndex].replace('red-text', '');
+        }
+
+        words[i] = '<span class="red-text">' + words[i] + '</span>';
+s
+        document.getElementById('text').innerHTML = words.join(' ');
+      }, 1000);
+    }
+
+    changeTextColor("Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum quae optio, unde aperiam labore delectus eum quasi perferendis accusantium consectetur.");
+  </script>
+</body>
+</html>
