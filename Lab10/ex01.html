@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function sum(...args) {
+            let total = 0;
+            for(let value of args) {
+                let convertValue = parseFloat(value);
+
+                if(isNaN(convertValue)) {
+                    throw new Error (`Invalid Input: ${value}`);
+                }
+
+                total += parseFloat(value);
+            }
+            return total;
+        }
+
+        console.log(sum(1, "1.4", "23", 1.2, "1a", "4.2b", "asd"));
+    </script>
+</body>
+</html>

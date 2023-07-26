@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Callback Function
+        function openFile(fn) {
+            console.log('Mở file');
+            setTimeout(function () {
+                console.log('File đã được mở');
+                fn();
+            }, 2000)
+        }
+
+        function readFile(fn) {
+            console.log('Đọc file');
+            setTimeout(function () {
+                console.log('F8 - Học lập trình để đi làm');
+                fn();
+            }, 1000)
+        }
+
+        function closeFile() {
+            console.log('Đóng file');
+            setTimeout(function () {
+                console.log('File đã đóng');
+            }, 1000)
+        }
+
+        openFile(function () {
+            readFile(function () {
+                closeFile();
+            })
+        })
+
+        // Promise
+        function openFilePromise() {
+            console.log('Mở file');
+            return new Promise(function (resolve) {
+                setTimeout(function () {
+                    resolve('File đã được mở');
+                }, 2000)
+            });
+        }
+
+        function readFilePromise() {
+            console.log('Đọc file');
+            return new Promise(function (resolve) {
+                setTimeout(function () {
+                    resolve('F8 - Học lập trình để đi làm');
+                }, 1000)
+            });
+        }
+
+        function closeFilePromise() {
+            console.log('Đóng file');
+            return new Promise(function (resolve) {
+                setTimeout(function () {
+                    resolve('File đã đóng');
+                }, 1000)
+            });
+        }
+
+        openFilePromise()
+            .then(function (response) {
+                console.log(response);
+                return readFilePromise();
+            })
+            .then(function (response) {
+                console.log(response);
+                return closeFilePromise();
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+    </script>
+</body>
+
+</html>
