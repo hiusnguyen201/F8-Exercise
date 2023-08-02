@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function convertMilliseconds(milliseconds) {
+        const units = [
+          { label: "day", ms: 24 * 60 * 60 * 1000 },
+          { label: "hour", ms: 60 * 60 * 1000 },
+          { label: "minute", ms: 60 * 1000 },
+          { label: "second", ms: 1000 },
+          { label: "millisecond", ms: 1 },
+        ];
+
+        let result = units
+          .reduce((acc, { label, ms }) => {
+            const value = Math.floor(milliseconds / ms);
+            if (value > 0) {
+              acc.push(`${value} ${label}${value !== 1 ? "s" : ""}`);
+              milliseconds %= ms;
+            }
+            return acc;
+          }, [])
+          .join(", ");
+
+        return result;
+      }
+
+      console.log(convertMilliseconds(1001));
+      console.log(convertMilliseconds(34325055574));
+    </script>
+  </body>
+</html>
