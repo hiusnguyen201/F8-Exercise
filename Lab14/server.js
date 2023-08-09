@@ -7,6 +7,7 @@ const port = 3000;
 
 const home = require('./modal/home.js');
 const account = require('./modal/account.js');
+const success = require('./modal/success.js');
 
 const server = http.createServer((req, res) => {
     res.statusCode = 200;
@@ -15,9 +16,22 @@ const server = http.createServer((req, res) => {
     if (req.url === '/') {
         home.add(req, res);
     }
-    else if(req.url === '/account')
+    else if(req.url.startsWith('/account/'))
     {
-        account.add(req, res);
+        const urlParts = req.url.split('/');
+        if (urlParts.length === 3) {
+            const phone = urlParts[2];
+            account.add(req, res, phone);
+        }
+    }
+    else if(req.url.startsWith('/success/'))
+    {
+        console.log(req.url);
+        const urlParts = req.url.split('/');
+        if (urlParts.length === 3) {
+            const phone = urlParts[2];
+            success.index(req, res, phone);
+        }
     }
 })
 

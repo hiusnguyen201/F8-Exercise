@@ -41,10 +41,19 @@ class Home extends Base {
                     fs.writeFileSync("./data/data.json", JSON.stringify(jsonData));
                 }
 
-                this.render(req, res, "index", {
-                    "error.name": errors.name ?? "",
-                    "old.phone": phone,
-                });
+                if(Object.keys(errors).length === 0)
+                {
+                    const redirectUrl = '/account/' + encodeURIComponent(phone);
+                    res.writeHead(302, { Location: redirectUrl });
+                    res.end();
+                }
+                else
+                {
+                    this.render(req, res, "index", {
+                        "error.name": errors.name ?? "",
+                        "old.phone": phone,
+                    });
+                }
             });
         }
     };

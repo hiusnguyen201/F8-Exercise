@@ -47,14 +47,6 @@ console.log(flattenedArr);
 
 var arr = [["a", 1, true], ["b", 2, false]];
 
-var seperateArray = arr.reduce(function (prev, curr) {
-    curr.forEach(function(value, i) {
-        if (prev[i] === undefined) {
-            prev[i] = [];
-        }
-        prev[i].push(value);
-    });
-    return prev;
-}, [])
+var mapArray = arr.map
 
 console.log(seperateArray);
