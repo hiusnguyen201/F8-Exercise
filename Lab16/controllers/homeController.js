@@ -1,18 +1,21 @@
 module.exports = {
     index: (req, res) => {
-        if (req.cookies.isLogged === 'true') 
+        console.log(req.session.isLogged);
+        if (req.session.isLogged) 
         {
             return res.render('home/index');
         } 
         else 
         {
-            res.cookie('isLogged', 'false');
+            req.session.isLogged = false;
+            console.log(req.session.isLogged);
             return res.redirect('/dang-nhap');
         }
     },
 
     handleLogout: (req, res) => {
-        res.cookie('isLogged', 'false');
+        req.session.isLogged = false;
+        console.log(req.session.isLogged);
         req.flash('success', "Đăng xuất thành công");
         return res.redirect("/dang-nhap");
     }

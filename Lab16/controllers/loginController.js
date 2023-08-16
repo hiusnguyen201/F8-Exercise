@@ -22,7 +22,7 @@ module.exports = {
         } 
         else if(email.toLowerCase() === "admin@gmail.com" && password === "123456") 
         {
-            res.cookie('isLogged', 'true');
+            req.session.isLogged = true;
             return res.redirect("/");
         }
         else
