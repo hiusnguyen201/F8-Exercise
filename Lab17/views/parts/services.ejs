@@ -1,0 +1,24 @@
+<section class="services-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2 class="title text-center services-title">Services</h2>
+                <p class="text text-center services-text">Typesetting industry lorem Ipsum is simply dummy text of the
+                </p>
+            </div>
+        </div>
+
+        <div class="services-section-2">
+            <% if(servicesList?.length) { servicesList.forEach( ({iconUrl, title, text}) => { %>
+                <div class="box-main">
+                    <div class="cup-icon-block">
+                        <img class="cup-icon" src="<%- iconUrl %>" alt="">
+                    </div>
+                    <h3 class="decoration-title"><%= title %></h3>
+                    <p class="decoration-text"><%= text %></p>
+                    <button class="btn services-btn"><a href="#">Read More</a></button>
+                </div>
+            <% })} %>
+        </div>
+    </div>
+</section>

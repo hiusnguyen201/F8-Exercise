@@ -1,0 +1,31 @@
+<section class="gallery-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2 class="text-center title gallery-title">Our Gallery</h2>
+                <p class="text-center text gallery-text">Lorem Ipsum is simply dummy text of printing typesetting ststry
+                    lorem Ipsum the
+                    industry'ndard dummy text ever since of the 1500s, when an unknown printer took a galley of type and
+                    scra make a
+                    type specimen book. It has</p>
+            </div>
+        </div>
+
+        <div class="gallery-section-2">
+            <% if (srcList?.length) { srcList.forEach(({ srcImg })=> { %>
+                <div class="img-block">
+                    <img class="gal-img" src="<%- srcImg %>" alt="gal1">
+                    <div class="overlay">
+                        <div class="search-icon_gal">
+                            <a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            <% })} %>
+        </div>
+
+        <div class="gal-btn_block">
+            <button class="btn gallery-btn">See More</button>
+        </div>
+    </div>
+</section>

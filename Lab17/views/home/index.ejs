@@ -1,0 +1,71 @@
+<section class="banner-section">
+    <div class="container">
+        <div class="banner-list">
+            <% if(bannerList?.length) { bannerList.forEach( ({outstanding, title, desc})=> { %>
+                <div class="banner-item">
+                    <div class="row">
+                        <h1 class="banner-outstanding">
+                            <%= outstanding %>
+                        </h1>
+                        <h1 class="banner-title">
+                            <%= title %>
+                        </h1>
+                        <p class="banner-text">
+                            <%= desc %>
+                        </p>
+                        <div class="banner-btn_block">
+                            <button class="btn banner-btn"><a href="#">Learn More</a></button>
+                        </div>
+                    </div>
+                </div>
+            <% });} %>
+        </div>
+
+        <div class="control-block">
+            <button class="control-prev" id="myControls"><i class="fa fa-angle-left"></i></button>
+            <button class="control-next" id="myControls"><i class="fa fa-angle-right"></i></button>
+        </div>
+    </div>
+</section>
+
+<%- include('../parts/about') %>
+    <%- include('../parts/gallery') %>
+        <%- include('../parts/services') %>
+
+            <section class="client-section">
+                <div class="container">
+                    <div class="client-top">
+                        <div class="row">
+                            <h2 class="title">Testimonial</h2>
+                            <p class="text">Eeven slightly believable. If you are going to use a passage of
+                                Lorem Ipsum, you need to</p>
+                        </div>
+                    </div>
+                    
+                    <div class="client-inner">
+                        <% if(clientList?.length) { clientList.forEach( ({clientName, comments})=> {%>
+                            <div class="client-item">
+                                <div class="row">
+                                    <h4 class="client-name">
+                                        <%= clientName %>
+                                            <span class="quick-icon">
+                                                <img src="/images/quick-icon.png" alt="quick-icon">
+                                            </span>
+                                    </h4>
+                                    <p class="text">
+                                        <%= comments %>
+                                    </p>
+                                </div>
+                            </div>
+                        <% });} %>
+                    </div>
+
+                    <div class="client-indicators">
+                        <button class="indicator-item firstIndicator"></button>
+                        <button class="indicator-item secondIndicator"></button>
+                        <button class="indicator-item thirdIndicator"></button>
+                    </div>
+                </div>
+            </section>
+
+            <%- include('../parts/contact') %>
