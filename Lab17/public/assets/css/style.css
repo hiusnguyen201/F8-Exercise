@@ -73,7 +73,6 @@ a {
 
 .title {
     width: 100%;
-    float: left;
     font-size: 4rem;
     color: #f76d37;
     font-weight: bold;
@@ -81,7 +80,6 @@ a {
 }
 
 .text {
-    float: left;
     font-size: 1.6rem;
     color: #4c4c4b;
     margin: 0px;
@@ -118,7 +116,6 @@ a {
 /* Banner */
 .banner-section {
     width: 100%;
-    float: left;
     background-image: url(../../images/banner-img.jpg);
     background-size: 100%;
     padding: 10px 0px 25px 0px;
@@ -145,7 +142,6 @@ a {
 }
 
 .banner-btn {
-    max-width: 175px;
     margin-top: 0;
     padding: 15px 40px;
 }
@@ -157,7 +153,6 @@ a {
 
 .banner-outstanding {
     width: 100%;
-    float: left;
     font-size: 6rem;
     color: #252525;
     padding-bottom: 0px;
@@ -165,7 +160,6 @@ a {
 
 .banner-title {
     width: 100%;
-    float: left;
     font-size: 7rem;
     color: #fdfcfa;
     font-weight: bold;
@@ -174,7 +168,6 @@ a {
 
 .banner-text {
     width: 50%;
-    float: left;
     font-size: 1.6rem;
     color: #fff;
     margin: 0px;
@@ -208,7 +201,6 @@ a {
 .about-section {
     padding: 90px 0;
     width: 100%;
-    float: left;
 }
 
 .about-content {
@@ -321,7 +313,6 @@ a {
 
 .services-title {
     width: 100%;
-    float: left;
     font-size: 4rem;
     color: #ffffff;
     font-weight: bold;
@@ -330,7 +321,6 @@ a {
 
 .services-text {
     width: 100%;
-    float: left;
     font-size: 1.6rem;
     color: #ffffff;
     margin: 0px;
@@ -419,7 +409,6 @@ a {
 
 .client-name {
     width: 100%;
-    float: left;
     font-size: 2.4rem;
     color: #f76d37;
     text-transform: uppercase;
@@ -431,7 +420,7 @@ a {
     position: relative;
     width: 100%;
     overflow: hidden;
-    height: 166px;
+    height: 200px;
     padding: 0 50px;
 }
 
@@ -445,6 +434,11 @@ a {
     position: unset;
     opacity: 1;
     transform: translate3d(0, 0, 0);
+}
+
+.client-text {
+    padding: 0;
+    height: 150px;
 }
 
 .client-item::after {
@@ -466,7 +460,7 @@ a {
     height: 150px;
     border-bottom: 3px solid #252525;
     border-right: 3px solid #252525;
-    top: 12px;
+    bottom: 12px;
     left: initial;
     right: -50px;
 }
@@ -521,12 +515,10 @@ a {
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
-    float: left;
 }
 
 .email-text {
     width: 100%;
-    float: left;
     margin-top: 20px;
 }
 
