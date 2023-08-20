@@ -135,7 +135,7 @@ a {
 .banner-item {
     position: absolute;
     opacity: 0;
-    transform: translate3d(100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
 }
 
 .banner-item.active {
@@ -431,14 +431,14 @@ a {
     position: relative;
     width: 100%;
     overflow: hidden;
-    height: 162px;
+    height: 166px;
     padding: 0 50px;
 }
 
 .client-item {
     position: absolute;
     opacity: 0;
-    transform: translate3d(100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
 }
 
 .client-item.active {
