@@ -12,6 +12,6 @@ router.get("/index.html", HomeController.index);
 router.get("/about.html", AboutController.index);
 router.get("/gallery.html", GalleryController.index);
 router.get("/services.html", ServicesController.index);
-router.get("/contact.hmtl", ContactController.index);
+router.get("/contact.html", ContactController.index);
 
 module.exports = router;
