@@ -1,16 +1,14 @@
 {
-  "dependencies": {
-    "nodemon": "^3.0.1"
-  },
-  "scripts": {
-    "start": "nodemon server.js"
-  },
-  "name": "lab15",
+  "name": "code_backend-exercise03",
   "version": "1.0.0",
-  "main": "server.js",
-  "devDependencies": {},
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  "description": "Chữa bài tập về nhà backend-exercise03",
+  "scripts": {
+    "start": "nodemon server/index.js"
+  },
+  "dependencies": {
+    "cookie": "^0.5.0",
+    "serialize-javascript": "^6.0.1",
+    "url": "^0.11.1",
+    "uuid": "^9.0.0"
+  }
 }
