@@ -1,0 +1,136 @@
+<div id="modal" class="modal" tabindex="-1">
+    <div class="modal-dialog z-1">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete Customer</h5>
+                <button type="button" onclick="closeModal()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="" method="post">
+                <div class="modal-body">
+                    <p>Are you sure to delete a customer information</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary w-100">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="overlay"></div>
+</div>
+
+<h1>Danh sach khach hang</h1>
+<a href="/customers/create" class="btn btn-primary mb-2">Them moi</a>
+
+<% if(msg?.length) { %>
+    <div class="alert alert-success">
+        <%= msg %>
+    </div>
+    <% } %>
+
+        <form action="" class="mb-2">
+            <div class="row">
+                <div class="col-3">
+                    <select name="status" class="form-select">
+                        <option value="all">Tat ca trang thai</option>
+                        <option value="active" <%=req.query.status==='active' ? 'selected' : '' ; %>>kich hoat</option>
+                        <option value="inactive" <%=req.query.status==='inactive' ? 'selected' : '' ; %>>chua kich hoat
+                        </option>
+                    </select>
+                </div>
+                <div class="col-7">
+                    <input type="search" name="keyword" class="form-control" placeholder="Tu khoa tim kiem..."
+                        value="<%= req.query.keyword %>">
+                </div>
+                <div class="col-2 d-grid">
+                    <button type="submit" class="btn btn-primary">Tim kiem</button>
+                </div>
+            </div>
+        </form>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th width="5%">STT</th>
+                    <th>Ten</th>
+                    <th>Email</th>
+                    <th width="10%">Trang thai</th>
+                    <th width="10%">Thoi gian</th>
+                    <th width="5%">Sua</th>
+                    <th width="5%">Xoa</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% customerList.forEach((customer, index)=> {
+                    %>
+                    <tr>
+                        <td>
+                            <%= index + 1 + (page-1) * PER_PAGE %>
+                        </td>
+                        <td>
+                            <%= customer.name %>
+                        </td>
+                        <td>
+                            <%= customer.email %>
+                        </td>
+                        <td>
+                            <%= customer.status===1 ? 'Active' : 'Inactive' %>
+                        </td>
+                        <td>
+                            <%= moment(customer.created_at).format('DD/MM/YYYY hh:mm:ss') %>
+                        </td>
+                        <td>
+                            <a href="/customers/update?id=<%= customer.id %>" class="btn btn-warning">Sua</a>
+                        </td>
+                        <td>
+                            <button <% session.cusId = customer.id %> onclick="openModal()" class="btn btn-danger">Xoa</button>
+                        </td>
+                    </tr>
+                    <% }); %>
+            </tbody>
+        </table>
+
+        <%if(totalPage> 1) { %>
+            <nav class="d-flex justify-content-end">
+                <ul class="pagination">
+                    <% if (page> 1) {%>
+                        <li class="page-item">
+                            <a class="page-link" href="?<%= getPaginateUrl(req, +page-1) %>">Previous</a>
+                        </li>
+                        <% } %>
+                            <% for (let i=1; i <=totalPage; i++) {%>
+                                <li class="page-item <%= +page === +i ? 'active' : '' %> ">
+                                    <a class="page-link" href="?<%= getPaginateUrl(req, i) %>">
+                                        <%= i %>
+                                    </a>
+                                </li>
+                                <% } %>
+
+                                    <% if(page < totalPage) {%>
+                                        <li class="page-item">
+                                            <a class="page-link" href="?<%= getPaginateUrl(req, +page+1) %>">Next</a>
+                                        </li>
+                                        <% } %>
+                </ul>
+            </nav>
+            <% } %>
+<style>
+    .overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: rgba(0 0 0 / 0.7);
+    }
+</style>
+<script>
+    var openModal = () => {
+        const modal = document.getElementById("modal");
+        modal.style.display = 'block';
+    }
+
+    var closeModal = () => {
+        const modal = document.getElementById("modal");
+        modal.style.display = 'none';
+    }
+</script>
