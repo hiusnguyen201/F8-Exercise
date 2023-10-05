@@ -1,0 +1,47 @@
+<div class="container-form mt-2">
+    <h1 class="text-center">LOGIN</h1>
+    <% if(msg?.length) { %>
+        <div class="alert alert-danger"><%= msg %></div>
+    <% } %>
+    <% if(success?.length) { %>
+        <div class="alert alert-success"><%= success %></div>
+    <% } %>
+    <form action="" method="post">
+        <div class="mb-3">
+            <label for="" class="form-label">Email Address</label>
+            <input type="email" name="email" class="form-control">
+            <span class="text-danger"><%= validate.getError(errors, 'email') %></span>
+        </div>
+        <div class="mb-3">
+            <label for="" class="form-label">Password</label>
+            <input type="password" name="password" class="form-control">
+            <span class="text-danger"><%= validate.getError(errors, 'password') %></span>
+        </div>
+        <button class="btn btn-primary w-100 py-2 mt-3 text-white">Login</button>
+    </form>
+    <span class="text-center d-block mt-4">Don't have an account? <a href="/accounts/register">Sign Up</a></span>
+</div>
+
+<style>
+    .container-form {
+        padding: 54px;
+        font-size: 18px;
+        background-color: white;
+        font-family: 'Roboto', sans-serif;
+        border-radius: 12px;
+    }
+
+    .form-control {
+        background-color: white;
+    }
+
+    .form-control:focus {
+        border-color: white;
+    }
+
+    p,
+    a {
+        color: #999696;
+        text-decoration: none;
+    }
+</style>

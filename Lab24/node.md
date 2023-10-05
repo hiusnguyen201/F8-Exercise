@@ -1,0 +1,9 @@
+dotenv
+connect-flash
+express-ejs-layouts
+express-session
+express-validator
+md5
+sequelize
+mysql2
+nodemon
