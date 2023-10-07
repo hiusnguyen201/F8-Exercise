@@ -1,0 +1,127 @@
+<h1>Danh sách khách hàng</h1>
+<a href="/customers/create" class="btn btn-primary mb-2">Them moi</a>
+
+<form action="" class="mb-2">
+    <div class="row">
+        <div class="col-3">
+            <select name="status" class="form-select">
+                <option value="all">Tat ca trang thai</option>
+                <option value="active" <%=req.query.status==='active' ? 'selected' : '' ; %>>kich hoat</option>
+                <option value="inactive" <%=req.query.status==='inactive' ? 'selected' : '' ; %>>chua kich hoat
+                </option>
+            </select>
+        </div>
+        <div class="col-7">
+            <input type="search" name="keyword" class="form-control" placeholder="Tu khoa tim kiem..."
+                value="<%= req.query.keyword %>">
+        </div>
+        <div class="col-2 d-grid">
+            <button type="submit" class="btn btn-primary">Tim kiem</button>
+        </div>
+    </div>
+</form>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th width="1%"><input onclick="CustomerSelectAll()" type="checkbox"></th>
+            <th width="5%">STT</th>
+            <th>Ten</th>
+            <th>Email</th>
+            <th width="10%">Trang thai</th>
+            <th width="10%">Thoi gian</th>
+            <th width="5%">Sua</th>
+            <th width="5%">Xoa</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% customerList.forEach((customer, index)=> {
+            %>
+            <tr>
+                <td>
+                    <input class="customerBox" type="checkbox" value="<%= +customer.id %>">
+                </td>
+                <td>
+                    <%= index + 1 + (page-1) * PER_PAGE %>
+                </td>
+                <td>
+                    <%= customer.name %>
+                </td>
+                <td>
+                    <%= customer.email %>
+                </td>
+                <td>
+                    <%= +customer.status===1 ? 'Active' : 'Inactive' %>
+                </td>
+                <td>
+                    <%= moment(customer.createdAt).format('DD/MM/YYYY hh:mm:ss') %>
+                </td>
+                <td>
+                    <a href="/customers/update/<%= +customer.id %>" class="btn btn-warning">Sua</a>
+                </td>
+                <td>
+                    <form action="/customers/destroy/<%= +customer.id %>" method="post">
+                        <button onclick="
+                        if (!confirm('Ban co muon chac chan xoa?')) {
+                            event.preventDefault();
+                        } " class="btn btn-danger">Xoa</button>
+                    </form>
+                </td>
+            </tr>
+        <% }); %>
+    </tbody>
+</table>
+
+<%if(totalPage> 1) { %>
+    <nav class="d-flex justify-content-end">
+        <ul class="pagination">
+            <% if (page> 1) {%>
+                <li class="page-item">
+                    <a class="page-link" href="?<%= getPaginateUrl(req, +page-1) %>">Previous</a>
+                </li>
+                <% } %>
+                    <% for (let i=1; i <=totalPage; i++) {%>
+                        <li class="page-item <%= +page === +i ? 'active' : '' %> ">
+                            <a class="page-link" href="?<%= getPaginateUrl(req, i) %>">
+                                <%= i %>
+                            </a>
+                        </li>
+                        <% } %>
+
+                            <% if(page < totalPage) {%>
+                                <li class="page-item">
+                                    <a class="page-link" href="?<%= getPaginateUrl(req, +page+1) %>">Next</a>
+                                </li>
+                                <% } %>
+        </ul>
+    </nav>
+    <% } %>
+
+<form action="/customers/destroyAll" method="post">
+    <input name="stringIds" type="text" hidden>
+    <button type="submit" class="btn btn-danger" onclick="GetIdCheckedBox()">Xoa da chon</button>
+</form>
+
+<script>
+    var CustomerSelectAll = () => {
+        const customerListBox = document.getElementsByClassName("customerBox");
+        for(var i = 0; i < customerListBox.length; i++) {
+            customerListBox[i].checked = true;
+        }
+    }
+    
+    var GetIdCheckedBox = () => {
+        if(confirm("Ban co chac chan xoa?")) {
+            const checkBoxs = document.querySelectorAll("input.customerBox:checked");
+            const stringIds = document.querySelector("input[name='stringIds']");
+            var ids = '';
+            for(var i = 0; i < checkBoxs.length; i++) {
+                ids += checkBoxs[i].value;
+                if(!(i === checkBoxs.length - 1)) ids += '&';
+            }
+            stringIds.value = ids;
+        } else {
+            event.preventDefault();
+        }
+    }
+</script>

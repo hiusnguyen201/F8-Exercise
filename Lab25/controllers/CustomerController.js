@@ -1,7 +1,7 @@
 const Customer = require("../models/Customer");
 const Province = require("../models/Province");
 const moment = require("moment");
-const { Op, DATE, Sequelize } = require("sequelize");
+const { Op } = require("sequelize");
 const { PER_PAGE } = process.env;
 const { getPaginateUrl } = require('../utils/url');
 const { validationResult } = require('express-validator');
@@ -20,6 +20,9 @@ module.exports = {
         const { keyword, status } = req.query;
         const customer = await Customer;
         const filters = {};
+
+        console.log(Customer);
+        console.log(customer);
 
 
         if (status === 'active' || status === 'inactive') {
