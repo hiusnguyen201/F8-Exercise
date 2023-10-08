@@ -31,16 +31,22 @@ module.exports = {
       },
       user_id: {
         type: Sequelize.INTEGER,
-        defaultValue: 1
+        defaultValue: 1,
+        references: {
+          model: {
+            tableName: "users"
+          },
+          key: "id"
+        }
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: 'TIMESTAMP',
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: 'TIMESTAMP',
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
       }
     });

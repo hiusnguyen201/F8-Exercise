@@ -22,9 +22,6 @@ module.exports = {
         // Filters
         const { keyword, status } = req.query; 
         const filters = {};
-        filters.deletedAt = {
-            [Op.is]: null
-        }
         if(status === "active" || status === 'inactive') {
             filters.status = (status === "active")? 1 : 0;
         }
@@ -59,6 +56,7 @@ module.exports = {
         } else if(page > totalPage) {
             page -= 1;
         }
+        req.session.curPage = page;
         // Tinh offset
         const offset = (page - 1) * PER_PAGE;
         // Lay danh sach customer
@@ -108,6 +106,7 @@ module.exports = {
 
     logout: async(req, res) => {
         delete req.session.isLogged;
+        delete req.session.curPage;
         res.redirect("/customers/login");
     },
 
@@ -137,8 +136,8 @@ module.exports = {
                 req.body.user_id = +req.body.user_id;
             }
             req.body.createdBy = id;
+            req.body.updatedAt = new Date();
             req.session.oldValueList = {};
-            console.log(req.body);
             await Customer.create(req.body);
             req.flash("success", "Them khach hang thanh cong");
             res.redirect("/customers/create");
@@ -154,7 +153,7 @@ module.exports = {
             res.redirect("/customers/login");
             return;
         }
-
+        const curPage = req.session.curPage;
         const { id } = req.params;
         const { msg } = req.flash("msg");
         const success = req.flash("success");
@@ -171,13 +170,13 @@ module.exports = {
         const customerDetail = await (await Customer.findOne({
             where: filters
         }));
-        
+
         const provinceList = await (await Province.findAll());
         if(!customerDetail) {
             res.redirect("/error"); 
             return;
         }
-        res.render("customers/update", {success, msg, customerDetail, validate, errors, provinceList});
+        res.render("customers/update", {success, msg, user_id, customerDetail, validate, errors, provinceList, curPage});
     },
 
     handleUpdate: async(req, res) => {
@@ -219,9 +218,9 @@ module.exports = {
         if(!(+user_id === 2)) {
             filters.user_id = 1;
         }
-        filters.id = id;
-
-        const customerDetail = await Customer.findByPk({
+        filters.id = +id;
+        
+        const customerDetail = await Customer.findOne({
             where: filters
         });
 

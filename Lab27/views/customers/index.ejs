@@ -45,7 +45,7 @@
                     <input class="checkBox" type="checkbox" oninput="CheckAllBox()" value="<%= +customer.id %>">
                 </td>
                 <% if(+user_id === 2) {%>
-                    <td><%= createdByList[index].name %></td>
+                    <td><%= createdByList[index]?.name %></td>
                 <% } %>
                 <td>
                     <%= index + 1 + (page-1) * PER_PAGE %>

@@ -11,7 +11,7 @@ module.exports = {
         password: md5('admin123'),
         status: 1,
         user_id: 2,
-        createdBy: 1
+        createdBy: 1,
       },
       {
         name: 'nguyenvana',
@@ -19,7 +19,7 @@ module.exports = {
         password: md5('nguyenvana123'),
         status: 0,
         user_id: 1,
-        createdBy: 1
+        createdBy: 1,
       },
       {
         name: 'tranvanb',
@@ -27,7 +27,7 @@ module.exports = {
         password: md5('tranvanb123'),
         status: 0,
         user_id: 1,
-        createdBy: 1
+        createdBy: 1,
       },
       {
         name: 'phamngoca',
@@ -35,7 +35,7 @@ module.exports = {
         password: md5('phamngoca123'),
         status: 1,
         user_id: 1,
-        createdBy: 1
+        createdBy: 1,
       },
       {
         name: 'phanthib',
@@ -43,7 +43,7 @@ module.exports = {
         password: md5('phanthib123'),
         status: 1,
         user_id: 2,
-        createdBy: 1
+        createdBy: 1,
       },
       {
         name: 'nguyenngoca',
@@ -51,7 +51,7 @@ module.exports = {
         password: md5('nguyenngoca123'),
         status: 0,
         user_id: 1,
-        createdBy: 1
+        createdBy: 1,
       },
     ]);
   },

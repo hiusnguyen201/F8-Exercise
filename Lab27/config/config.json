@@ -3,10 +3,10 @@
     "use_env": true,
     "database": "database_lab27_nguyenminhhieu",
     "username": "root",
-    "password": "",
+    "password": "Thephe789!",
     "host": "localhost",
     "dialect": "mysql",
-    "port": "",
+    "port": "3001",
     "logging": true
   },
   "test": {

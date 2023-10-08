@@ -40,7 +40,16 @@
             <%}); %>
         </select>
     </div>
+    <% if(user_id === 2) {%>
+        <div class="mb-3">
+            <label for="">Vai tro</label>
+            <select name="user_id" class="form-select">
+                <option <%= (+customerDetail.user_id === 1)? "selected" : '' %> value="1">Nguoi dung</option>
+                <option <%= (+customerDetail.user_id === 2)? "selected" : '' %> value="2">Quan tri vien</option>
+            </select>
+        </div>
+    <% } %>
 
     <button class="btn btn-success">Luu</button>
-    <a href="/customers" class="btn btn-danger">Huy</a>
+    <a href="/customers?page=<%= curPage %>" class="btn btn-danger">Huy</a>
 </form>

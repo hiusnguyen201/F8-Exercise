@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   User.init({
-    role: DataTypes.BOOLEAN
+    role: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'User',
