@@ -1,0 +1,26 @@
+{
+  "development": {
+    "use_env": true,
+    "database": "database_lab28_nguyenminhhieu",
+    "username": "root",
+    "password": "Thephe789!",
+    "host": "localhost",
+    "dialect": "mysql",
+    "port": "3001",
+    "logging": true
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}

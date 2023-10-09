@@ -1,0 +1,55 @@
+<h1>Sua thong tin khach hang</h1>
+
+<% if(msg?.length) { %>
+    <div class="alert alert-danger"><%= msg %></div>
+<% } %>
+
+<% if(success?.length) { %>
+    <div class="alert alert-success"><%= success %></div>
+<% } %>
+
+<form action="" method="post">
+    <div class="mb-3">
+        <label for="">Ten</label>
+        <input type="text" name="name" placeholder="Ten..." class="form-control" <% if (customerDetail) {%> value="<%= customerDetail.name %>" <% } %>>
+        <span class="text-danger"><%= validate.getError(errors, 'name') %></span>
+    </div>
+    <div class="mb-3">
+        <label for="">Email</label>
+        <input type="text" name="email" placeholder="Email..." class="form-control" <% if (customerDetail) { %> value="<%= customerDetail.email %>" <% } %>>
+        <span class="text-danger"><%= validate.getError(errors, 'email') %></span>
+    </div>
+    <div class="mb-3">
+        <label for="">Mat khau</label>
+        <input type="password" name="password" placeholder="Mat khau..." class="form-control">
+        <span class="text-danger"><%= validate.getError(errors, 'password') %></span>
+    </div>
+    <div class="mb-3">
+        <label for="">Trang thai</label>
+        <select name="status" class="form-select">
+            <option <%= (+customerDetail.status === 0)? 'selected' : '' %> value="0">Chua kich hoat</option>
+            <option <%= (+customerDetail.status === 1)? 'selected' : '' %> value="1">Kich hoat</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="">Tinh/Thanh pho</label>
+        <select name="province_id" class="form-select">
+            <option value="0">Chon Tinh/Thanh pho</option>
+            <% provinceList.forEach(({id, name}) => { %>
+                <option <%= (+customerDetail.province_id === +id)? 'selected' : '' %> value="<%= id %>"><%= name %></option>
+            <%}); %>
+        </select>
+    </div>
+    <% if(user_id === 2) {%>
+        <div class="mb-3">
+            <label for="">Vai tro</label>
+            <select name="user_id" class="form-select">
+                <option <%= (+customerDetail.user_id === 1)? "selected" : '' %> value="1">Nguoi dung</option>
+                <option <%= (+customerDetail.user_id === 2)? "selected" : '' %> value="2">Quan tri vien</option>
+            </select>
+        </div>
+    <% } %>
+
+    <button class="btn btn-success">Luu</button>
+    <a href="/customers?page=<%= curPage %>" class="btn btn-danger">Huy</a>
+</form>
