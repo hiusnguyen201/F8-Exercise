@@ -32,3 +32,45 @@
         </div>
     </form>
 </div>
+
+<% if(isSubmit?.length) {%>
+    <div class="modal d-block" id="modal" tabindex="-1">
+        <div class="modal-dialog z-1">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Xac minh dia chi email</h5>
+            </div>
+            <form action="" method="post">
+                <div class="modal-body">
+                    <label for="">Nhap ma xac nhan:</label>
+                    <input type="text" name="token" class="form-control mt-2">
+                  </div>
+                  <div class="modal-footer">
+                      <button type="submit" class="btn btn-primary">Gui di</button>
+                      <button type="button" onclick="CloseModal()" class="btn btn-secondary" data-bs-dismiss="modal">Dong</button>
+                  </div>
+            </form>
+          </div>
+        </div>
+        <div class="overlay"></div>
+    </div>
+<% } %>    
+
+<style>
+    .overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+</style>
+
+<script>
+    var CloseModal = () => {
+        const modal = document.getElementById("modal");
+        modal.classList.remove('d-block');
+    }
+</script>

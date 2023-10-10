@@ -11,8 +11,6 @@ router.get('/login', CustomerController.login);
 router.post('/login', LoginValidate(), CustomerController.hanldeLogin);
 router.get('/register', CustomerController.register);
 router.post('/register', RegisterValidate(), CustomerController.handleSubmit);
-router.get('/register/auth', CustomerController.auth);
-router.post('/register/auth', CustomerController.handleToken);
 router.get('/', CustomerController.index);
 router.post('/', CustomerController.logout);
 router.get('/create', CustomerController.create);

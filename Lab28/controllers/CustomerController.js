@@ -110,7 +110,8 @@ module.exports = {
     register: async (req, res) => {
         const msg = req.flash("msg");
         const errors = req.flash("errors");
-        res.render("customers/register", { msg, validate, errors });
+        const isSubmit= req.flash("isSubmit");
+        res.render("customers/register", { msg, validate, errors, isSubmit });
     },
 
     handleSubmit: async (req, res) => {
@@ -122,42 +123,38 @@ module.exports = {
             }
         });
 
-        if (errors.isEmpty()) {
-            delete req.body.repeat;
-            req.body.password = md5(req.body.password);
-            
-            // Gui token vao email
-            const token = jwt.sign({ 
-                exp: Math.floor(Date.now() / 1000) + 1,
-                data: 'lab28-secret'
-            }, 'secret');
-
-            req.session.token = token;
-            req.session.info = req.body;
-
-            await sendEmail(token);
-            res.redirect("/customers/register/auth");
-        } else {
-            req.flash("msg", "Vui long nhap day du thong tin");
-            req.flash("errors", errors.array());
-            res.redirect("/customers/register");
-        }
-    },
-
-    auth: (req, res) => {
-        res.render("customers/auth");
-    },
-
-    handleToken: async (req, res) => {
         const { token } = req.body;
-        if(token === req.session.token) {
-            await Customer.create(req.session.info);
-            delete req.session.token;
-            delete req.session.info;
-            req.flash("success", "Tao tai khoan thanh cong");
-            res.redirect("/customers/login");
+        if(token) {
+            if(token === req.session.token) {
+                await Customer.create(req.session.info);
+                delete req.session.token;
+                delete req.session.info;
+                req.flash("success", "Tao tai khoan thanh cong");
+                res.redirect("/customers/login");
+            } else {
+                req.flash("msg", "Thong tin xac minh khong khop");    
+                res.redirect("/customers/register");
+            }
         } else {
-            req.flash("msg", "Thong tin xac minh khong khop");    
+            if (errors.isEmpty()) {
+                delete req.body.repeat;
+                req.body.password = md5(req.body.password);
+                
+                // Gui token vao email
+                const token = jwt.sign({ 
+                    exp: Math.floor(Date.now() / 1000) + 1,
+                    data: 'lab28-secret'
+                }, 'secret');
+    
+                req.session.token = token;
+                req.session.info = req.body;
+    
+                await sendEmail(token);
+                req.flash("isSubmit", true);
+            } else {
+                req.flash("msg", "Vui long nhap day du thong tin");
+                req.flash("errors", errors.array());
+            }
             res.redirect("/customers/register");
         }
     },
