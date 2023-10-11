@@ -1,0 +1,7 @@
+<p>Tên Người Gửi: <b><%= user.name %></b></p>
+<p>Email Người Gửi: <b><%= user.email %></b></p>
+<p>Đến: <b><%= userSendTo.email %></b></p>
+<p>Ngày: <b><%= moment(user.Mails[0].createdAt).format('DD/MM/YYYY hh:mm:ss') %></b></p>
+<p>Subject: <b><%= user.Mails[0].subject %></b></p>
+<p>Content: <b><%= user.Mails[0].content %></b></p>
+<a href="/" class="btn btn-primary">Quay Lai</a>

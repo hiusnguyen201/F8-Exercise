@@ -1,22 +1,20 @@
 require("dotenv").config();
-// console.log(process.env.NODE_ENV);
-
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var flash = require("connect-flash");
-var session = require('express-session');
+const flash = require("connect-flash");
+const session = require('express-session');
 
-var customersRouter = require('./routes/customers');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var authRouter = require('./routes/auth');
 
 var app = express();
 app.use(
   session({
-    secret: "F8",
+    secret: "Lab29",
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -26,22 +24,22 @@ app.use(
   })
 )
 
-app.use(flash());
 // view engine setup
 const expressLayouts = require("express-ejs-layouts");
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.use(expressLayouts);
 
+app.use(flash());
+app.use(expressLayouts);
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/customers', customersRouter);
 app.use('/', indexRouter);
+app.use('/auth', authRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
