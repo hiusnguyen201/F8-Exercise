@@ -1,0 +1,19 @@
+<h1>Khôi phục lại mật khẩu</h1>
+<% if(msg?.length) {%>
+    <div class="alert alert-danger">
+        <%= msg %>
+    </div>
+    <% } %>
+<form action="" method="post">
+    <div class="mt-4">
+        <label for="">Mật khẩu</label>
+        <input type="password" name="password" class="form-control" placeholder="Mật khẩu..." required>
+    </div>
+    <div class="mt-4">
+        <label for="">Nhập lại mật khẩu</label>
+        <input type="password" name="repeatPass" class="form-control" placeholder="Mật khẩu..." required>
+    </div>
+    <div class="d-grid mt-3">
+        <button type="submit" class="btn btn-primary">Gửi</button>
+    </div>
+</form>
