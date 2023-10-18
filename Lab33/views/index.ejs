@@ -1,0 +1,60 @@
+<script>
+  const CountDown = () => {
+    const shortLinks = document.querySelectorAll("a.short-link");
+    shortLinks.forEach((link) => {
+      link.onclick = () => {
+        var currHref = link.href;
+        link.href = "javascript:void(0)";
+        setTimeout(() => {
+          link.href = currHref;
+        }, 3000);
+      };
+    })
+  }
+</script>
+
+<div class="d-flex align-items-center justify-content-between">
+  <h1>Chào bạn: <b class="text-warning"><%= user.name %></b></h1>
+  <a href="/auth/logout" class="btn btn-danger py-2 px-5">Đăng xuất</a>
+</div>
+
+<% if(error?.length) {%>
+  <div class="alert alert-danger my-2"><%= error %></div>
+<% } %>
+
+<div class="mt-4 py-5" style="background-color: #263849; border-radius: 10px">
+  <form action="" method="post" class="text-center">
+    <p style="font-size: 42px; color: white; font-weight: 700">
+      Free URL Shortener
+    </p>
+    <div class="mt-3 d-flex align-items-center justify-content-center">
+      <input
+        type="url"
+        name="url"
+        required
+        placeholder="Enter link here"
+        class="form-control w-50"
+      />
+      <button type="submit" class="btn btn-primary px-5 py-2 ms-3">
+        Shorten URL
+      </button>
+    </div>
+  </form>
+  
+  <% if(linkList?.length) { %>
+      <% linkList.forEach((link) => { %>
+        <div class="d-flex align-items-center justify-content-center w-75 mx-auto">
+          <div style="border-radius: 10px; padding: 12px;background-color: white;" class="w-75 d-flex align-items-center justify-content-between mt-3">
+            <p class="my-0 w-50"><%= link.origin_url %></td></p>
+            <a class="short-link px-5" style="text-decoration: none;border-left: 1px solid #ccc;border-right: 1px solid #ccc" onclick="CountDown()" href="/update/<%= link.shorten_url %>">db.nmh/<%= link.shorten_url %></a>
+            <span class="px-3"><%= link.views %></td>
+          </div>
+          <div class="ms-3 mt-3">
+            <a href="/destroy/<%= link.shorten_url %>" class="btn btn-danger">Delete</a>
+          </div>
+        </div>
+      <% }) %>
+  <% } %>
+</div>
+
+
