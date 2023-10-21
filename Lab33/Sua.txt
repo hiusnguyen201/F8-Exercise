@@ -1,0 +1,4 @@
+- Thêm trang quản lý các đường link:
+	+ Có thống kê
+	+ Làm phần sửa
+- Phần tạo hiện thị 1 lần

@@ -1,0 +1,28 @@
+<h2>Quản lý Roles</h2>
+
+<% if (success?.length) { %>
+    <div class="alert alert-success"><%= success %></div>
+<% } %>
+
+<a href="/roles/add" class="btn btn-primary my-3">Thêm mới</a>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Tên</th>
+            <th width="5%">Sửa</th>
+            <th width="5%">Xóa</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% roles.forEach(({id, name}) => { %>
+            <tr>
+                <td><%= name %></td>
+                <td><a href="/roles/edit/<%= id %>" class="btn btn-warning">Sửa</a></td>
+                <td>
+                    <a href="#" class="btn btn-danger delete-action">Xóa</a>
+                    <form action="/roles/delete/<%= id %>" method="post"></form>
+                </td>
+            </tr>
+        <% }) %>
+    </tbody>
+</table>

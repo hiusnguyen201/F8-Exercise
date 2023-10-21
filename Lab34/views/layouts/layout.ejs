@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container p-3">
+      <div class="row">
+        <div class="col-3">
+          <nav>
+            <ul class="nav flex-column">
+              <li><a href="/" class="btn btn-primary mb-3">Trang chủ</a></li>
+              <% if (haveRead) {%>
+                <li><a href="/users" class="btn btn-success mb-3">Quản lý người dùng</a></li>
+              <% } %>
+              <li><a href="/roles" class="btn btn-success mb-3">Quản lý roles</a></li>
+              <li><a href="/auth/logout" class="btn btn-danger mb-3">Đăng xuất</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="col-9">
+          <%- body %>
+        </div>
+      </div>
+      <script src="/js/script.js"></script>
+    </div>
+  </body>
+  
+</html>

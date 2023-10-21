@@ -1,0 +1,47 @@
+<h2>Danh sách người dùng</h2>
+<% if(permissionList.includes('users.add')) { %>
+    <a href="/users/add" class="btn btn-primary">Thêm mới</a>
+<% } %>
+<hr>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th width="5%">STT</th>
+            <th>Tên</th>
+            <th>Email</th>
+            <% if(rolesName.includes("Admin")) { %>
+                <th width="15%">Phân quyền</th>
+            <% } %>
+            <% if(permissionList.includes('users.update')) { %>
+                <th width="5%">Sửa</th>
+            <% } %>   
+            <% if(permissionList.includes('users.delete')) { %>
+                <th width="5%">Xóa</th>
+            <% } %>   
+        </tr>
+    </thead>
+    <tbody>
+        <% users.forEach(({name, email, id}, index) => { %>
+            <tr>
+                <td><%= index + 1 %></td>
+                <td><%= name %></td>
+                <td><%= email %></td>
+                <% if(rolesName.includes("Admin")) { %>
+                    <td>
+                        <a href="/users/permission/<%= id %>" class="btn btn-success">Phân quyền</a>
+                    </td>
+                <% } %>
+                <% if(permissionList.includes('users.update')) { %>
+                    <td>
+                        <a href="/users/update" class="btn btn-warning">Sửa</a>
+                    </td>
+                <% } %>
+                <% if(permissionList.includes('users.delete')) { %>
+                    <td>
+                        <a href="/users/delete" class="btn btn-danger delete-action">Xóa</a>
+                    </td>
+                <% } %>
+            </tr>
+        <% }) %>
+    </tbody>
+</table>
