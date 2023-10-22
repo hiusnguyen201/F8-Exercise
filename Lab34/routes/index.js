@@ -1,15 +1,9 @@
 var express = require("express");
-const permissionUtils = require("../utils/permission");
 var router = express.Router();
+const HomeController = require("../controllers/HomeController");
 
 /* GET home page. */
-router.get("/", async function (req, res, next) {
-  if (req.user) {
-    const permissions = await permissionUtils.getPermissions(req);
-    req.app.locals.haveRead = permissions.includes("users.read");
-    res.render('index', { title: 'Express', haveRead: req.app.locals.haveRead});
-  }
-});
+router.get("/", HomeController.index);
 
 module.exports = router;
 

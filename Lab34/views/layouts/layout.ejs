@@ -19,7 +19,9 @@
               <% if (haveRead) {%>
                 <li><a href="/users" class="btn btn-success mb-3">Quản lý người dùng</a></li>
               <% } %>
-              <li><a href="/roles" class="btn btn-success mb-3">Quản lý roles</a></li>
+              <% if(isAdmin) {%>
+                <li><a href="/roles" class="btn btn-success mb-3">Quản lý roles</a></li>
+              <% } %>
               <li><a href="/auth/logout" class="btn btn-danger mb-3">Đăng xuất</a></li>
             </ul>
           </nav>
