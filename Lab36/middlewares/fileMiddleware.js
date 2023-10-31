@@ -1,8 +1,20 @@
-const path = require("path");
 const multer = require("multer");
+const fs = require("fs");
 
 module.exports = (req, res, next) => {
-  const uploadFolder = path.join(path.dirname(__dirname), "public", "files");
+  const uploadFolder = "./public/files";
+
+  if (!fs.existsSync(uploadFolder)) {
+    try {
+      fs.mkdirSync("./public/files");
+    } catch (e) {
+      return res.status(500).json({
+        status: "error",
+        error: e,
+      });
+    }
+  } 
+    
   const storage = multer.diskStorage({
     destination: (req, file, cb) => {
       cb(null, uploadFolder);
@@ -17,13 +29,13 @@ module.exports = (req, res, next) => {
       // A Multer error occurred when uploading.
       return res.status(400).json({
         status: "error",
-        error: err
+        error: err,
       });
     } else if (err) {
       // An unknown error occurred when uploading.
       return res.status(400).json({
         status: "error",
-        error: err
+        error: err,
       });
     }
     next();
