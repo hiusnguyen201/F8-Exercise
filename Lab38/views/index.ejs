@@ -1,0 +1,25 @@
+<h1 class="mt-5">
+  <%= title %>
+</h1>
+
+<table class="table table-bordered table-collapse">
+  <thead>
+    <tr>
+      <th width="5%">STT</th>
+      <th width="10%">Tên</th>
+      <th>Email</th>
+      <th>Ngày tạo</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% if(data?.length) { data.forEach((item, index) => { %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= item.name %></td>
+        <td><%= item.email %></td>
+        <td><%= item.createdAt %></td>
+      </tr>
+    <% })} %>
+  </tbody>
+</table>
