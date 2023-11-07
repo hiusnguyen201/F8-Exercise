@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <h1>
+    <%= title %>
+  </h1>
+  <% if(!userId) {%>
+    <a href="http://localhost:3000/auth/login" class="btn btn-primary">Đăng nhập</a>
+    <% }else {%>
+      <a href="http://localhost:3000/auth/logout" class="btn btn-danger">Đăng xuất</a>
+      <% } %>
+</body>
+
+</html>
