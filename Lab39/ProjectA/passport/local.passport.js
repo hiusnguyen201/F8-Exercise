@@ -18,6 +18,6 @@ module.exports = new LocalStrategy(
 
         if (!bcrypt.compareSync(password, user.password)) { return done(null, false, { message: 'Incorrect email or password' }) }
 
-        return done(null, user);
+        return done(null, user.id);
     }
 );

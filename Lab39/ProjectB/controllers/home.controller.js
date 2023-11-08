@@ -1,21 +1,33 @@
 const jwt = require("jsonwebtoken");
 module.exports = {
-    index: (req, res) => {
+    index: async (req, res) => {
         const token = req.cookies.token;
 
         try {
-            let userId = null;
             if (token) {
                 const decoded = jwt.verify(token, process.env.JWT_SECRET);
                 if (decoded) {
-                    req.session.user = decoded.data;
+                    req.session.userId = decoded.data;
+                }
+
+                try {
+                    const respond = await fetch(`http://localhost:3000/api/profile/${+req.session.userId}`);
+                    if (respond.status === 200) {
+                        const { user } = await respond.json();
+
+                        res.render("index", { title: "Project B", user });
+                    } else {
+                        const error = {
+                            status: 404, stack: null
+                        };
+                        res.render('error', { message: "Kiem tra lai link api", error });
+                    }
+                } catch (e) {
+                    res.render('error', { message: e.message, error: e });
                 }
             }
-
-            res.render("index", { title: "Project B", user: req.session.user });
         } catch (e) {
-            console.log(e);
-            res.render('error');
+            res.render('error', { message: e.message, error: e });
         }
-    },
+    }
 }

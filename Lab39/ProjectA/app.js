@@ -10,9 +10,9 @@ const passport = require("passport");
 const flash = require("connect-flash");
 
 const localPassport = require("./passport/local.passport");
-const model = require("./models/index");
 var indexRouter = require('./routes/index');
-var authRouter = require('./routes/auth');
+const authRouter = require('./routes/auth');
+const apiRouter = require('./routes/api');
 
 var app = express();
 
@@ -25,13 +25,12 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.serializeUser((user, done) => {
-  done(null, user.id);
+passport.serializeUser((id, done) => {
+  done(null, id);
 });
 
 passport.deserializeUser(async (id, done) => {
-  const user = await model.User.findByPk(id);
-  done(null, user);
+  done(null, id);
 });
 
 passport.use("local", localPassport);
@@ -52,6 +51,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
+app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
