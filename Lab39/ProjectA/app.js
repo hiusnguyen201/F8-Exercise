@@ -10,6 +10,7 @@ const passport = require("passport");
 const flash = require("connect-flash");
 
 const localPassport = require("./passport/local.passport");
+const model = require("./models/index");
 var indexRouter = require('./routes/index');
 var authRouter = require('./routes/auth');
 
@@ -17,18 +18,20 @@ var app = express();
 
 app.use(session({
   secret: 'Lab39',
+  resave: true,
   saveUninitialized: true,
-  resave: false,
 }))
 
 app.use(passport.initialize());
 app.use(passport.session());
+
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
 passport.deserializeUser(async (id, done) => {
-  done(null, id);
+  const user = await model.User.findByPk(id);
+  done(null, user);
 });
 
 passport.use("local", localPassport);

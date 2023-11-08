@@ -8,11 +8,11 @@ module.exports = {
             if (token) {
                 const decoded = jwt.verify(token, process.env.JWT_SECRET);
                 if (decoded) {
-                    userId = decoded.data;
+                    req.session.user = decoded.data;
                 }
             }
 
-            res.render("index", { title: "Project B", userId });
+            res.render("index", { title: "Project B", user: req.session.user });
         } catch (e) {
             console.log(e);
             res.render('error');

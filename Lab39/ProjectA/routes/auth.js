@@ -12,6 +12,6 @@ router.post('/login', passport.authenticate("local", {
     failureFlash: true,
 }));
 
-router.get("/logout", AuthMiddleware.isLogout, AuthController.logout);
+router.get("/logout", AuthController.logout);
 
 module.exports = router;

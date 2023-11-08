@@ -8,11 +8,7 @@ module.exports = new LocalStrategy(
         passwordField: 'password',
     },
     async (email, password, done) => {
-        if (!email || !password) {
-            return done(null, false, { message: 'Vui lòng nhập đầy đủ thông tin !' });
-        }
-
-        let user = await model.User.findOne({
+        const user = await model.User.findOne({
             where: {
                 email: email,
             },
