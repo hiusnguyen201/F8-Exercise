@@ -26,6 +26,7 @@ module.exports = {
                     res.render('error', { message: e.message, error: e });
                 }
             }
+            res.render("index", { title: "Project B", user: null });
         } catch (e) {
             res.render('error', { message: e.message, error: e });
         }
