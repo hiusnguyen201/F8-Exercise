@@ -1,6 +1,11 @@
 const models = require("../models/index");
 
 module.exports = async (req, res, next) => {
+  if (!req.user) {
+    res.redirect("/auth/login");
+    return;
+  }
+
   const tokenCookie = req.cookies.token;
 
   const tokenValid = await models.Login_Token.findOne({
