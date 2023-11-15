@@ -50,17 +50,22 @@ module.exports = {
       return acc + cur;
     });
 
-    console.log(otp, "-", req.session.otp);
-
     if (+otp === req.session.otp) {
       const id = +req.user.id;
-      const loginToken = await models.Login_Token.findByPk(id);
+
+      const loginToken = await models.Login_Token.findOne({
+        where: {
+          user_id: id,
+        },
+      });
+
       if (loginToken) {
         const status = await loginToken.destroy();
         if (!status) {
           console.log("Xóa login_token lỗi!");
           return;
         }
+        res.clearCookie("token");
       }
 
       const newToken = md5(new Date().getTime() + Math.random());
@@ -68,14 +73,11 @@ module.exports = {
         user_id: id,
         token: newToken,
       });
-
       if (!newLoginToken) {
         console.log("Tạo mới login_token lỗi!");
         return;
       }
-
       res.cookie("token", newLoginToken.token);
-
       res.redirect("/");
     } else {
       req.flash("error", "Mã otp ko hợp lệ");
