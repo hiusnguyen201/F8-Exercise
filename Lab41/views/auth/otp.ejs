@@ -1,0 +1,49 @@
+<h3 class="text-center my-3">Chúng tôi đã gửi mã otp vào <%= user.email %></h3 class="text-center">
+<h4 class="text-center my-3">Vui lòng kiểm tra gmail !</h4>
+
+<% if(error?.length) {%>
+    <div class="alert alert-danger"><%= error %></div>
+<% } %>
+
+<form action="" method="post">
+<div class="inputfield my-5">
+  <input type="number" maxlength="1" class="input" name="otp" />
+  <input type="number" maxlength="1" class="input" name="otp" />
+  <input type="number" maxlength="1" class="input" name="otp" />
+  <input type="number" maxlength="1" class="input" name="otp" />
+  <input type="number" maxlength="1" class="input" name="otp" />
+  <input type="number" maxlength="1" class="input" name="otp" />
+</div>
+<div class="d-grid">
+    <button class="btn btn-primary py-3 login-btn" disabled>Đăng nhập</button>
+</div>
+</form>
+
+<div class="d-grid mt-3">
+    <a href="/auth/login" class="btn btn-danger py-3 login-btn">Go Back</a>
+</div>
+
+<script>
+    const inputsValue = document.querySelectorAll("input[name=otp]");
+    const btn = document.querySelector(".login-btn");
+
+    let check = 0;
+    inputsValue.forEach((input) => {
+        input.onchange = () => {
+            if(input.value) {
+                ++check;
+            } else {
+                --check;
+                if(check === 0) {
+                    check = 0;
+                }
+            }
+
+            if(check === inputsValue.length) {
+              btn.disabled = false;
+            } else {
+                btn.disabled = true;
+            }
+        }
+    });
+</script>

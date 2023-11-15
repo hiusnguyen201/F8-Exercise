@@ -1,0 +1,41 @@
+<% if(success?.length) { %>
+<div class="alert alert-success"><%= success %></div>
+<%}%> <% if(error?.length) { %>
+<div class="alert alert-danger"><%= error %></div>
+<% }%>
+
+<p>Owned by: <b><%= user.email %></b></p>
+<p>Client ID: <b><%= app.client_id %></b></p>
+
+<div class="my-3">
+  <table class="table table-bordered table-collapse">
+    <thead>
+      <th><h2>Client secrets</h2></th>
+      <th width="20%">
+        <form action="" method="post">
+          <button <%= (app.client_secret) ? 'disabled' : '' %> class="btn btn-primary ms-5">
+            Generate a new client secret
+          </button>
+        </form>
+      </th>
+    </thead>
+    <tbody>
+        <% if (app.client_secret) {%>
+            <tr>
+            <td>
+            <p class="my-3">Client Secret: <b><%= app.client_secret %></b></p>
+            </td>
+            <td width="20%"><button class="btn btn-danger">Delete</button></td>
+        </tr>
+          <% } %>
+    </tbody>
+  </table>
+</div>
+
+<p class="my-3">App Name: <b><%= app.name %></b></p>
+
+<p class="my-3">Homepage URL: <b><%= app.homepage %></b></p>
+
+<p class="my-3">Callback URL: <b><%= app.callback %></b></p>
+
+<a href="/apps" class="btn btn-danger">Go Back</a>
