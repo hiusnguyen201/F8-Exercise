@@ -1,1 +1,4 @@
-Đăng nhập xác minh 2 lớp ở phần login project A
+- 1 tài khoản chỉ được đăng nhập trên 1 thiết bị (Nếu thiết bị sau đăng nhập thì thiết bị trước bị đăng xuất)
+- Xác minh 2 bước qua email
+
+2 ý trên ở project A trong login
