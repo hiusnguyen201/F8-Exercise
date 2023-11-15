@@ -1,0 +1,22 @@
+<h1 class="w-50 mb-3" style="margin: 0 auto">Register new App</h1>
+
+<% if(error?.length) { %>
+<div class="alert alert-danger w-50" style="margin: 0 auto"><%= error %></div>
+<% } %>
+
+<form class="w-50 mt-3" method="post" style="margin: 0 auto" action="">
+  <div class="mb-3">
+    <label for="">Name:</label>
+    <input type="text" name="name" class="form-control" required />
+  </div>
+  <div class="mb-3">
+    <label for="">Homepage URL:</label>
+    <input type="text" name="homepage" class="form-control" required />
+  </div>
+  <div class="mb-3">
+    <label for="">Callback URL:</label>
+    <input type="text" name="callback" class="form-control" required />
+  </div>
+  <button class="btn btn-success me-3">Create App</button>
+  <a class="btn btn-danger" href="/apps">Go Back</a>
+</form>

@@ -1,0 +1,22 @@
+<h1>OAuth Module</h1>
+
+<% if(success?.length) { %>
+    <div class="alert alert-success"><%= success %></div>
+<% } %>
+
+<h3>Danh sách các Apps<a href="/apps/new" class="btn btn-primary ms-5">New App</a></h2>
+
+<table class="table table-bordered table-collapse">
+    <thead>
+        <th>Tên</th>
+        <th width="5%">Chỉnh sửa</th>
+    </thead>
+    <tbody>
+        <% if(apps?.length) { apps.forEach(({id, name}) => { %>
+        <tr>
+            <td><%= name %></td>
+            <td width="5%"><a href="/apps/edit/<%= id %>" class="btn btn-warning">Edit</a></td>
+        </tr>
+        <% })} %>
+    </tbody>
+</table>    
